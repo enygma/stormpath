@@ -28,7 +28,7 @@ $service = new \Stormpath\Service($config);
 $apps = $service->applications;
 
 // Or you can fetch the info for just one on the list
-$appId = '154hoAGm9PhGECgYbh2n59';
+$appId = 'your-application-id-here';
 $app = $service->getApplication($appId);
 echo 'App name: '.$app->name." (".$app->status.")\n";
 
