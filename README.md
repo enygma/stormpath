@@ -13,7 +13,7 @@ as your test script - it looks for it there.
 
 #### Sample code:
 
-```
+```php
 <?php
 require_once 'vendor/autoload.php';
 
