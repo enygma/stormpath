@@ -8,6 +8,11 @@ of "Applications".
 Sample Usage:
 =============
 
+You'll need to have your `apiKey.properties` file they give you in the same directory 
+as your test script - it looks for it there.
+
+#### Sample code:
+
 ```
 <?php
 require_once 'vendor/autoload.php';
