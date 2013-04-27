@@ -43,6 +43,17 @@ class Model
     }
 
     /**
+     * Extract the ID from the HREF setting
+     * 
+     * @param string $value HREF value for application
+     */
+    public function setHref($value)
+    {
+        $parts = explode('/', $value);
+        $this->values['id'] = trim($parts[count($parts)-1]);
+    }
+
+    /**
      * Set properties for the model
      *
      * @param array $properties Properties to set
