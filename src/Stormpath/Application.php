@@ -30,17 +30,6 @@ class Application extends \Stormpath\Model
     );
 
     /**
-     * Extract the ID from the HREF setting
-     * 
-     * @param string $value HREF value for application
-     */
-    public function setHref($value)
-    {
-        $parts = explode('/', $value);
-        $this->values['id'] = trim($parts[count($parts)-1]);
-    }
-
-    /**
      * Get a listing of all applications in the account
      * 
      * @return array Set of application data
@@ -124,6 +113,23 @@ class Application extends \Stormpath\Model
         $results = $request->setUrl($url)
             ->setMethod('POST')
             ->setData($data)
+            ->execute();
+
+        return ($request->success() === true) ? true : false;
+    }
+
+    /**
+     * Delete the application
+     * 
+     * @return boolean Success/fail of the delete
+     */
+    public function delete()
+    {
+        $request = $this->getRequest();
+        $url = '/v1/applications/'.$this->id;
+
+        $results = $request->setUrl($url)
+            ->setMethod('DELETE')
             ->execute();
 
         return ($request->success() === true) ? true : false;
