@@ -29,8 +29,8 @@ class Service
         if ($request === null) {
             // make a request object to use
             $request = new \Stormpath\Request($config);
-            $this->setRequest($request);
         }
+        $this->setRequest($request);
     }
 
     /**
@@ -147,5 +147,19 @@ class Service
             ->setRequest($this->getRequest());
 
         return $object->save();
+    }
+
+    /**
+     * Call the "delete" method on the object
+     * 
+     * @param object $object Object to call method on
+     * @return boolean Success/fail of save call
+     */
+    public function delete($object)
+    {
+        $object->setConfig($this->getConfig())
+            ->setRequest($this->getRequest());
+
+        return $object->delete();
     }
 }
