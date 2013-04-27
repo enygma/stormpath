@@ -140,8 +140,50 @@ class Model
      */
     public function __get($property)
     {
-        return (array_key_exists($property, $this->values))
-            ? $this->values[$property] : null;
+        // if it's a href...
+        if (array_key_exists($property, $this->values)) {
+
+            // If it's a HREF, pull it
+            if (isset($this->values[$property]->href)) {
+                $urlParts = parse_url($this->values[$property]->href);
+                $uri = explode('/', $urlParts['path']);
+                $part = $uri[count($uri)-1];
+
+                if (strtolower(substr($uri[count($uri)-1], -1)) == 's') {
+                    $className = ucwords(strtolower(substr($part, 0, strlen($part)-1)));
+                } else {
+                    $className = ucwords(strtolower($part));
+                }
+
+                $method = 'get'.ucwords($uri[count($uri)-1]);
+                if (method_exists($this, $method)) {
+                    $data = $this->$method();
+                    $class = '\\Stormpath\\'.$className;
+
+                    if (is_array($data)) {
+                        // push them into objects
+                        $result = array();
+                        foreach ($data as $d) {
+                            $obj = new $class();
+                            $obj->load($d);
+                            $result[] = $obj;
+                        }
+                    } else {
+                        $result = new $class();
+                        $result->load($data);
+                    }
+                    
+                    return $result;
+                } else {
+                    throw new \Exception('Cannot fetch "'.$property.'" - unknown method');
+                }
+
+            } else {
+                return $this->values[$property];
+            }
+        } else {
+            return null;
+        }
     }
 
     /**
