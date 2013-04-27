@@ -15,7 +15,8 @@ class Application extends \Stormpath\Model
             'type' => 'string'
         ),
         'accounts' => array(
-            'type' => 'href'
+            'type' => 'href',
+            'class' => 'Account'
         ),
         'tenant' => array(
             'type' => 'href'
