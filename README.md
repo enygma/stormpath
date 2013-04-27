@@ -53,3 +53,10 @@ if ($app->enable() == true) {
 
 ?>
 ```
+
+Running the tests:
+=============
+
+To run the unit tests for this library, use PHPUnit like:
+
+`phpunit -c tests/phpunit.xml tests/`
