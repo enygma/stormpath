@@ -45,10 +45,10 @@ class Request
      * Create the object and set up the configuration, make a client object
      * @param \Stormpath\Config $config [description]
      */
-    public function __construct(\Stormpath\Config $config)
+    public function __construct(\Stormpath\Config $config, $client = null)
     {
         $this->setConfig($config);
-        $this->setClient();
+        $this->setClient($client);
     }
 
     /**
@@ -59,8 +59,12 @@ class Request
     public function setClient($client = null)
     {
         // create a new Guzzle client
-        $basepath = $this->getConfig()->get('api.basepath');
-        $this->client = new Client($basepath);
+        if ($client !== null) {
+            $this->client = $client;
+        } else {
+            $basepath = $this->getConfig()->get('api.basepath');
+            $this->client = new Client($basepath);
+        }
         return $this;
     }
 
