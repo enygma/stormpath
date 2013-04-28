@@ -86,6 +86,8 @@ class Config
     public function load($addl = null)
     {
         $file = $this->getFilename();
+        $config = null;
+
         if (is_file($file)) {
             $config = parse_ini_file($file);
             if ($config == false) {
@@ -93,9 +95,11 @@ class Config
                     'Configuration file could not be parsed: '.$file
                 );
             }
-        } else {
+        } else if ($addl !== null && is_array($addl)) {
             $config = $addl;
         }
-        $this->setConfig($config);
+        if ($config !== null) {
+            $this->setConfig($config);
+        }
     }
 }
