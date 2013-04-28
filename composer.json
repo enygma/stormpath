@@ -1,8 +1,8 @@
 {
     "name":"enygma/stormpath",
     "type":"library",
-    "description":"PHP library to interface with the Stormpath Auth REST API",
-    "keywords":["stormpath", "user", "authentication", "rest", "api"],
+    "description":"PHP library to interface with the Stormpath User Authentication API",
+    "keywords":["stormpath", "authentication", "user", "rest", "api"],
     "homepage":"https://github.com/enygma/stormpath.git",
     "license":"MIT",
     "authors":[
