@@ -1,6 +1,8 @@
 Stormpath API Client
 =============
 
+[![Build Status](https://secure.travis-ci.org/enygma/stormpath.png?branch=master)](http://travis-ci.org/enygma/stormpath)
+
 This library is an example of working with the Stormpath user authentication REST API.
 It's a limited functionality proof of concept, mostly defined around their concept 
 of "Applications".
